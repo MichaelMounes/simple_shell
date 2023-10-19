@@ -50,7 +50,7 @@ int _mysetenv(info_inter *info)
 	}
 	if (_setenv(info, info->argv[1], info->argv[2]))
 		return (0);
-	return (1);
+	return (0);
 }
 
 /**
