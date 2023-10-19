@@ -7,12 +7,12 @@
  *
  * Return: 0 on success, 1 on error, or error code
  */
-int hsh(info_t *info, char **av)
+int hsh(info_inter *info, char **av)
 {
 	ssize_t r = 0;
-	int builtin_ret = 0;
+	int builtinRet = 0;
 
-	while (r != -1 && builtin_ret != -2)
+	while (r != -1 && builtinRet != -2)
 	{
 		clear_info(info);
 		if (interactive(info))
@@ -22,8 +22,8 @@ int hsh(info_t *info, char **av)
 		if (r != -1)
 		{
 			set_info(info, av);
-			builtin_ret = find_builtin(info);
-			if (builtin_ret == -1)
+			builtinRet = find_builtin(info);
+			if (builtinRet == -1)
 				find_cmd(info);
 		}
 		else if (interactive(info))
@@ -34,13 +34,13 @@ int hsh(info_t *info, char **av)
 	free_info(info, 1);
 	if (!interactive(info) && info->status)
 		exit(info->status);
-	if (builtin_ret == -2)
+	if (builtinRet == -2)
 	{
 		if (info->err_num == -1)
 			exit(info->status);
 		exit(info->err_num);
 	}
-	return (builtin_ret);
+	return (builtinRet);
 }
 
 /**
@@ -52,7 +52,7 @@ int hsh(info_t *info, char **av)
  *			1 if builtin found but not successful,
  *			-2 if builtin signals exit()
  */
-int find_builtin(info_t *info)
+int find_builtin(info_inter *info)
 {
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
@@ -83,7 +83,7 @@ int find_builtin(info_t *info)
  *
  * Return: void
  */
-void find_cmd(info_t *info)
+void find_cmd(info_inter *info)
 {
 	char *path = NULL;
 	int i, k;
@@ -95,7 +95,7 @@ void find_cmd(info_t *info)
 		info->linecount_flag = 0;
 	}
 	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
+		if (!is_delime(info->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
@@ -125,7 +125,7 @@ void find_cmd(info_t *info)
  *
  * Return: void
  */
-void fork_cmd(info_t *info)
+void fork_cmd(info_inter *info)
 {
 	pid_t child_pid;
 
@@ -158,3 +158,4 @@ void fork_cmd(info_t *info)
 		}
 	}
 }
+
