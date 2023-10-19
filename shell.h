@@ -125,25 +125,25 @@ char *find_path(info_inter *, char *, char *);
 /* loophsh.c */
 int loophsh(char **);
 
-/* toem_errors.c */
+/* toem_errors1.c */
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-/* toem_string.c */
+/* toem_string1.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
-/* toem_string1.c */
+/* toem_string2.c */
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 
-/* toem_exits.c */
+/* toem_exit.c */
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
@@ -157,7 +157,7 @@ char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
-/* toem_memory.c */
+/* toem_memories.c */
 int bfree(void **);
 
 /* toem_atoi.c */
@@ -166,19 +166,19 @@ int is_delime(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
-/* toem_errors1.c */
+/* toem_errors2.c */
 int _erratoi(char *);
 void print_error(info_inter *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-/* toem_builtin.c */
+/* toem_builtin1.c */
 int _myexit(info_inter *);
 int _mycd(info_inter *);
 int _myhelp(info_inter *);
 
-/* toem_builtin1.c */
+/* toem_builtin2.c */
 int _myhistory(info_inter *);
 int _myalias(info_inter *);
 
@@ -211,14 +211,14 @@ int read_history(info_inter *info);
 int build_history_list(info_inter *info, char *buf, int linecount);
 int renumber_history(info_inter *info);
 
-/* toem_lists.c */
+/* toem_lists1.c */
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
 size_t print_list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 
-/* toem_lists1.c */
+/* toem_lists2.c */
 size_t list_len(const list_t *);
 char **list_to_strings(list_t *);
 size_t print_list(const list_t *);
